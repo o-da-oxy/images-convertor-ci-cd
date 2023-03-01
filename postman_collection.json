@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "c938c869-f84c-42e0-83af-bd95891b9e67",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15981895"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Task get\",\r\n    \"content\": \"To write a text\",\r\n    \"date\": \"18.11.2022, 21:39:16\",\r\n    \"_id\": \"6377d1184f94e347f66d327a\",\r\n    \"__v\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/not-found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/not-found",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"not-found"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

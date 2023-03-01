@@ -1,0 +1,18 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  //"ts-node": {"require": ["tsconfig-paths/register"]},
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "esModuleInterop": true, //позволяет импортировать commonjs пакеты как es6
+    //"moduleResolution": "node", //разрешение модуля: node. определяет, откуда импортировать модули
+    //"resolveJsonModule": true, //позволяет импортировать json файлы
+    //"noImplicitAny": false, //подсвечивает тип any
+    "baseUrl": "",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
