@@ -1,24 +1,14 @@
-name: Testing for push
+name: Deploy push
 on: push
 jobs:
-  build:
+  deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Get the repository code
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-      - name: Build
-        run: npm run compile
-  pm2:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Get the repository code
-        uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm install
-      - name: Build
+      - name: Build app
         run: npm run compile
       - name: Install pm2
         run: npm install pm2@latest -g
