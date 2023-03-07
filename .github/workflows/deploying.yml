@@ -1,8 +1,18 @@
 name: Testing for push
 on: push
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+    steps:
+      - name: Get the repository code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run compile
+  pm2:
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Get the repository code
         uses: actions/checkout@v3
