@@ -1,13 +1,13 @@
 name: Deploy push
 on: push
 jobs:
-  deployment:
+  building:
     runs-on: ubuntu-latest
     steps:
       - name: Get the repository code
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build app
         run: npm run compile
       - name: Install pm2
@@ -20,4 +20,8 @@ jobs:
         run: pm2 stop index
       - name: Delete pm2 app
         run: pm2 delete index
-
+#  deploying:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Get the repository code
+#        uses: actions/checkout@v3

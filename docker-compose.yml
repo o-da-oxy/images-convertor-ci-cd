@@ -1,0 +1,20 @@
+version: "3.5"
+
+services:
+  image:
+    container_name: image_container
+    # достать докер образ из облака
+    #    your Docker Hub repo name (it matches the account username)
+    #        ____|____
+    #       |        |
+    image: demskaya01/images-convertor-ci-cd
+    #                 |_____________________|
+    #                            |
+    #              name of the image you uploaded to Docker Hub;
+    restart: always
+    env_file:
+      - .env
+    # не нужен, если образ из облака
+    # build: .
+    ports:
+      - "3000:3000"
