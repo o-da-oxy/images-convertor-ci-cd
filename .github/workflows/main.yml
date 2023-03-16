@@ -60,20 +60,20 @@ jobs:
     needs: [pushing_to_docker_hub]
     steps:
       - name: Deploy to VPS
-        uses: appleboy/ssh-action@master
+        uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
         with:
           # IP
-          host: ${{ secrets.VPS_SSH_HOST }}
-          # username
-          username: ${{ secrets.VPS_SSH_USERNAME }}
+          ORIGIN: ${{ secrets.VPS_SSH_HOST }}
           # private SSH key
-          key: ${{ secrets.VPS_SSH_SECRET }}
-          # SSH port
-          port: ${{ secrets.VPS_SSH_PORT }}
+          SSHKEY: ${{ secrets.VPS_SSH_SECRET }}
+          # port in SSH
+          PORT: ${{ secrets.VPS_SSH_PORT }}
+          # username in SSH
+          USER: ${{ secrets.VPS_SSH_USERNAME }}
           script: |
             echo "Pull new image"
-            docker-compose -f /home/${{ secrets.VPS_SSH_USERNAME }}/images-convertor-ci-cd/docker-compose.yml pull
+            docker-compose -f ${{ secrets.VPS_SSH_USERNAME }}/images-convertor-ci-cd/docker-compose.yml pull
             echo "Restart the container"
-            docker-compose -f /home/${{ secrets.VPS_SSH_USERNAME }}/images-convertor-ci-cd/docker-compose.yml up --force-recreate --build --no-deps -d
+            docker-compose -f ${{ secrets.VPS_SSH_USERNAME }}/images-convertor-ci-cd/docker-compose.yml up --force-recreate --build --no-deps -d
             echo "Delete old image"
             docker image prune -f
