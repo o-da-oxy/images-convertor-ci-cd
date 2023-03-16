@@ -65,9 +65,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Deploy to VPS
+        # "convertor" is running container's name
         run: |
-          docker stop ${{ secrets.DOCKERHUB_CONTAINER_NAME }}
-          docker rm ${{ secrets.DOCKERHUB_CONTAINER_NAME }}
+          docker stop convertor
+          docker rm convertor
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
           docker run -p 3000:3000 --name ${{ secrets.DOCKERHUB_CONTAINER_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
           
