@@ -70,7 +70,7 @@ jobs:
           PORT: ${{ secrets.VPS_SSH_PORT }}
           # username in SSH
           USER: ${{ secrets.VPS_SSH_USERNAME }}
-          script: |
+      - run: |
             echo "Pull new image"
             docker-compose -f ${{ secrets.VPS_SSH_USERNAME }}/images-convertor-ci-cd/docker-compose.yml pull
             echo "Restart the container"
