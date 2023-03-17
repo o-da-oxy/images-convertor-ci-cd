@@ -64,11 +64,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Deploy to VPS
-        # "convertor" is running container's name
-        run: |
-          docker stop convertor
-          docker rm convertor
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
-          docker run -p 3000:3000 --name ${{ secrets.DOCKERHUB_CONTAINER_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
-          
+      - name: "Run backup script on server"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_SSH_HOST }}
+          username: ${{ secrets.VPS_SSH_USERNAME }}
+          key: ${{ secrets.VPS_SSH_SECRET }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          script: | 
+            docker stop convertor
+            docker rm convertor
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
+            docker run -p 3000:3000 --name ${{ secrets.DOCKERHUB_CONTAINER_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/images-convertor-ci-cd
+
