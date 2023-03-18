@@ -70,7 +70,6 @@ jobs:
           host: ${{ secrets.VPS_SSH_HOST }}
           username: ${{ secrets.VPS_SSH_USERNAME }}
           key: ${{ secrets.VPS_SSH_SECRET }}
-          port: ${{ secrets.VPS_SSH_PORT }}
           script: | 
             docker stop convertor
             docker rm convertor
