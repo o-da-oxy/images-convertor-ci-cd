@@ -1,4 +1,4 @@
-#Image-Convertor
+# Image-Convertor
 
 Разработать сервис обработки документов, который принимает ряд параметров на обработку.
 **Возможные параметры**
@@ -11,13 +11,13 @@
 - Всего может обрабатываться не более трех документов за раз.
 - Максимальный размер 1-го документа не более 50mb
 
-##START
+## START
 
 1) Create .env, add PORT=5000
 2) npm install
 3) npm run start 
 
-##Queries
+## Queries
 
 POST (convert image):
 URL: http://localhost:5000/images/upload
